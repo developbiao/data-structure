@@ -145,6 +145,47 @@ public class LinkedList <E> {
        return false;
     }
 
+    /**
+     * Remove Element by index
+     * @param index
+     * @return
+     */
+    public E remove(int index) {
+        if(index < 0 || index >= size) {
+            throw new IllegalArgumentException("Remove failed. Index is illegal.");
+        }
+        Node prev = dummyHead;
+        for(int i = 0; i < index; i ++) {
+           prev = prev.next;
+        }
+
+        Node retNode = prev.next;
+        prev.next = retNode.next;
+        retNode.next = null;
+        size --;
+
+        return retNode.e;
+    }
+
+    /**
+     * remove fist element
+     * @return
+     */
+    public E removeFirst() {
+        return remove(0);
+    }
+
+    /**
+     * remove last element
+     * @return
+     */
+    public E removeLast() {
+        return remove(size - 1);
+    }
+
+
+
+
     public String toString() {
         StringBuilder res = new StringBuilder();
 

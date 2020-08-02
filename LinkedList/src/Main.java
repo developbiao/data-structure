@@ -17,6 +17,18 @@ public class Main {
         // check contains
         System.out.println(linkedList.contains(666));
 
+        // remove index 2
+        linkedList.remove(2);
+        System.out.println(linkedList);
+
+        // remove fist
+        linkedList.removeFirst();
+        System.out.println(linkedList);
+
+        // remove last
+        linkedList.removeLast();
+        System.out.println(linkedList);
+
         System.out.println("Program running is ok !");
     }
 }
