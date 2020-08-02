@@ -13,17 +13,21 @@ public class LinkedList <E> {
            this(e, null);
         }
 
+        public Node() {
+            this(null, null);
+        }
+
         @Override
         public String toString() {
             return e.toString();
         }
     }
 
-    private Node head;
+    private Node dummyHead;
     private int size;
 
     public LinkedList() {
-        head = null;
+        dummyHead = new Node(null);
         size = 0;
     }
 
@@ -35,35 +39,36 @@ public class LinkedList <E> {
         return size == 0;
     }
 
-    public void addFirst(E e) {
-//        Node node = new Node(e);
-//        node.next = head;
-//        head = node;
-        head = new Node(e, head);
-        this.size++;
-    }
 
     public void add(int index, E e) {
         if(index < 0 || index > size) {
            throw new IllegalArgumentException("Add Failed. Illegal index.");
         }
+        Node prev = dummyHead;
+        for(int i = 0 ; i < index; i++) {
+            prev = prev.next;
+        }
 
-        if(index == 0) {
-            addFirst(e);
-        }else {
-            Node prev = head;
-            for(int i = 0 ; i < index - 1; i++) {
-                prev = prev.next;
-            }
-
+        // key point find add node prev node
 //            Node node  = new Node(e);
 //            node.next = prev.next;
 //            prev.next = node;
-            prev.next = new Node(e, prev.next);
-            size++;
-        }
+        prev.next = new Node(e, prev.next);
+        size++;
     }
 
+    /**
+     * Add element in linked list fist
+     * @param e
+     */
+    public void addFirst(E e) {
+        this.add(0, e);
+    }
+
+    /**
+     * Add element in linked list last
+     * @param e
+     */
     public void addLast(E e){
         add(size, e);
     }
