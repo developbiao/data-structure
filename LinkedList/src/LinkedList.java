@@ -27,7 +27,7 @@ public class LinkedList <E> {
     private int size;
 
     public LinkedList() {
-        dummyHead = new Node(null);
+        dummyHead = new Node();
         size = 0;
     }
 
@@ -40,6 +40,11 @@ public class LinkedList <E> {
     }
 
 
+    /**
+     * Add element by index
+     * @param index
+     * @param e
+     */
     public void add(int index, E e) {
         if(index < 0 || index > size) {
            throw new IllegalArgumentException("Add Failed. Illegal index.");
@@ -71,6 +76,83 @@ public class LinkedList <E> {
      */
     public void addLast(E e){
         add(size, e);
+    }
+
+    /**
+     * Get element by index
+     * @param index
+     * @return
+     */
+    public E get(int index) {
+        if(index < 0 || index >= size) {
+            throw new IllegalArgumentException("Get Failed. Illegal index.");
+        }
+
+        Node cur = dummyHead.next;
+        for(int i = 0; i < index; i ++) {
+           cur = cur.next;
+        }
+        return cur.e;
+    }
+
+    /**
+     * get first element
+     * @return
+     */
+    public E getFirst() {
+        return get(0);
+    }
+
+
+    /**
+     * Get last element
+     * @return
+     */
+    public E getLast() {
+        return get(size - 1) ;
+    }
+
+    /**
+     * Modify linked list index(0-based) position element e
+     * @param index
+     */
+    public void set(int index, E e) {
+        if(index < 0 || index >= size) {
+            throw new IllegalArgumentException("Set Failed. Illegal index.");
+        }
+
+        Node cur = dummyHead.next;
+        for(int i = 0; i < index; i ++) {
+            cur = cur.next;
+        }
+
+        cur.e = e;
+    }
+
+    /**
+     * Judge contains element in linked list
+     * @param e
+     * @return
+     */
+    public boolean contains(E e) {
+       Node cur = dummyHead.next;
+       while(cur != null) {
+           if(cur.e.equals(e)){
+              return true;
+           }
+          cur = cur.next;
+       }
+       return false;
+    }
+
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+
+        for(Node cur = dummyHead.next; cur != null; cur = cur.next) {
+           res.append(cur + "->");
+        }
+        res.append("NULL");
+        return res.toString();
     }
 }
 
