@@ -3,7 +3,7 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-        int opCount = 100000;
+        int opCount = 300000;
 
         ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
         double time1 = benchmark(arrayQueue, 0);
@@ -13,6 +13,9 @@ public class Main {
         double time2 = benchmark(loopQueue, opCount);
         System.out.println("Loop Queue spend time: " + time2 + " s");
 
+        LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+        double time3 = benchmark(linkedListQueue, opCount );
+        System.out.println("Linked Queue spend time: " + time3 + " s");
 
     }
 
