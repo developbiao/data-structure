@@ -29,7 +29,14 @@ public class Main {
         System.out.println();
 
         System.out.println("--------------");
-        System.out.println(bst);
+        // System.out.println(bst);
+
+        // No recursion pre order
+        bst.preOrderNoR();
+        System.out.println();
+
+        // level order
+        bst.levelOrder();
 
 
         System.out.println("Binary test is work!");
