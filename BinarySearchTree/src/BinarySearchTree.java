@@ -71,6 +71,7 @@ public class BinarySearchTree <E extends Comparable<E>> {
        return contains(root, e);
     }
 
+
     /**
      * Search element using recursion algorithm
      * @param node
@@ -91,5 +92,51 @@ public class BinarySearchTree <E extends Comparable<E>> {
         else{
            return contains(node.right, e);
         }
+    }
+
+    /**
+     * Pre order traverse
+     */
+    public void preOrder(){
+       preOrder(root);
+    }
+
+    private void preOrder(Node node) {
+       if(node == null) {
+           return;
+       }
+       System.out.println(node.e);
+       preOrder(node.left);
+       preOrder(node.right);
+    }
+
+    /**
+     * In Order traverse
+     */
+    public void inOrder() {
+       inOrder(root);
+    }
+
+    private void inOrder(Node node) {
+       if(node == null ) {
+           return;
+       }
+       inOrder(node.left);
+       System.out.println(node.e);
+       inOrder(node.right);
+    }
+
+    public void postOrder() {
+       postOrder(root);
+    }
+
+    private void postOrder(Node node) {
+       if(node == null) {
+           return;
+       }
+
+       postOrder(node.left);
+       postOrder(node.right);
+       System.out.println(node.e);
     }
 }
