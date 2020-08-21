@@ -28,6 +28,8 @@ public class Main {
         bst.postOrder();
         System.out.println();
 
+        System.out.println("--------------");
+        System.out.println(bst);
 
 
         System.out.println("Binary test is work!");

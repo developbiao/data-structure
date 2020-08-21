@@ -139,4 +139,30 @@ public class BinarySearchTree <E extends Comparable<E>> {
        postOrder(node.right);
        System.out.println(node.e);
     }
+
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        generateString(root, 0, res);
+        return res.toString();
+    }
+
+    private void generateString(Node node, int depth, StringBuilder res) {
+        if(node == null) {
+            res.append(generateDepthString(depth) + "null\n");
+            return;
+        }
+
+        res.append(generateDepthString(depth) + node.e + "\n");
+        generateString(node.left, depth + 1, res);
+        generateString(node.right, depth + 1, res);
+    }
+
+    private String generateDepthString(int depth){
+       StringBuilder res = new StringBuilder();
+       for(int i = 0; i < depth; i ++) {
+           res.append("--");
+       }
+       return res.toString();
+    }
+
 }
