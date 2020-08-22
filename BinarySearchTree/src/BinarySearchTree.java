@@ -186,6 +186,90 @@ public class BinarySearchTree <E extends Comparable<E>> {
 
     }
 
+    /**
+     * Search minimum element
+     * @return
+     */
+    public E minimum() {
+       if(size == 0 )  {
+           throw new IllegalArgumentException("BST is empty");
+       }
+       Node minNode = minimum(root);
+       return minNode.e;
+    }
+
+    private Node minimum(Node node) {
+       if(node.left == null) {
+           return node;
+       }
+       return minimum(node.left);
+    }
+
+    /**
+     * Get maximum element
+     * @return
+     */
+    public E maximum() {
+        if(size == 0) {
+            throw new IllegalArgumentException("BST is empty");
+        }
+
+        Node maxNode = maximum(root);
+        return maxNode.e;
+    }
+
+    private Node maximum(Node node) {
+        if(node.right == null) {
+            return node;
+        }
+        return maximum(node.right);
+    }
+
+    /**
+     * Remove minimum node in BST and return minimum element
+     * @return
+     */
+    public E removeMin() {
+       E ret = minimum();
+       root = removeMin(root);
+       return ret;
+    }
+
+    private Node removeMin(Node node) {
+       if(node.left == null) {
+           Node rightNode = node.right;
+           node.right = null;
+           size--;
+           return rightNode;
+       }
+
+       node.left = removeMin(node.left);
+       return node;
+    }
+
+    /**
+     * Remove maximum node in BST and return maximum element
+     * @return
+     */
+    public E removeMax() {
+        E ret = maximum();
+        root = removeMax(root);
+        return ret;
+    }
+
+    private Node removeMax(Node node) {
+       if(node.right == null) {
+          Node nodeLeft = node.left;
+          node.left = null;
+          size--;
+          return nodeLeft;
+       }
+
+       node.right = removeMax(node.right);
+       return node;
+    }
+
+
     public String toString() {
         StringBuilder res = new StringBuilder();
         generateString(root, 0, res);
