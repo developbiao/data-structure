@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        minAndMax();
+        removeTest();
         System.out.println("Binary test is work!");
     }
 
@@ -55,7 +55,6 @@ public class Main {
         Random random = new Random();
 
         int n = 1000;
-
         for(int i = 0; i < n; i ++) {
             bst.add(random.nextInt(10000));
         }
@@ -93,4 +92,43 @@ public class Main {
 
         System.out.println("Remove test completed.");
     }
+
+    public static void removeTest() {
+        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+        Random random = new Random();
+        int n = 10000;
+        for(int i = 0; i < n; i ++) {
+            bst.add(random.nextInt(n));
+        }
+
+        Integer[] order = new Integer[n];
+        for(int i = 0; i < n; i ++) {
+            order[i] = i;
+        }
+
+        // [0...n) range all element
+        for(int i = 0; i < n; i ++) {
+            if(bst.contains(order[i])) {
+                bst.remove(order[i]);
+                System.out.println("After remove" + order[i] + ", size=" + bst.size());
+            }
+        }
+
+        // shuffle order element
+        shuffle(order);
+
+        System.out.println("Finally BST size is: " + bst.size());
+
+    }
+
+    private static void shuffle(Object[] arr) {
+        for(int i = arr.length - 1; i >= 0; i--) {
+           int pos = (int) (Math.random() * (i + 1));
+           Object t = arr[pos];
+           arr[pos] = arr[i];
+           arr[i] = t;
+        }
+
+    }
+
 }

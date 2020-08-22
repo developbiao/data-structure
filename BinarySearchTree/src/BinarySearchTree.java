@@ -269,6 +269,56 @@ public class BinarySearchTree <E extends Comparable<E>> {
        return node;
     }
 
+    /**
+     * Remove Specified element in BST tree node
+     * @param e
+     */
+    public void remove(E e) {
+        root = remove(root, e);
+    }
+
+    private Node remove(Node node, E e) {
+        if(node == null) {
+           return null;
+        }
+
+        if(e.compareTo(node.e) < 0) {
+           node.left = remove(node.left, e);
+           return node;
+        }
+        else if(e.compareTo(node.e) > 0 ) {
+            node.right = remove(node.right, e);
+            return node;
+        }
+        else{
+            // e.compareTo(node.e) == 0
+            // to be delete left tree is empty
+            if(node.left == null) {
+                Node rightNode = node.right;
+                node.right = null;
+                size--;
+                return rightNode;
+            }
+
+            if(node.right == null) {
+                Node leftNode = node.left;
+                node.left = null;
+                size--;
+                return leftNode;
+            }
+            // to be delete tree sub left and sub right not empty
+            // Hibbard deletion method
+            //successor node substitute node
+            Node successor = minimum(node.right);
+            successor.right = removeMin(node.right);
+            successor.left = node.left;
+            // remove node
+            node.left = node.right = null;
+            return successor;
+        }
+
+    }
+
 
     public String toString() {
         StringBuilder res = new StringBuilder();
